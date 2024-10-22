@@ -1,0 +1,4 @@
+ng generate module produit/produit
+ng generate service produit/produit
+ng g c produit/produit
+ng g c produit/produit-form

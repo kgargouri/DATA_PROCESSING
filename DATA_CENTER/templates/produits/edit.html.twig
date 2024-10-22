@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier : {{ produit.nom }}{% endblock %}
+{% block titre %}Modifier : {{ produit.nom }}{% endblock %}
+{% block btnAction %}
+<div class="col">{{ include('produits/_delete_form.html.twig') }}</div>
+{% endblock %}
+
+{% block body %}
+    {{ include('produits/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+{% endblock %}

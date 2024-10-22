@@ -1,0 +1,39 @@
+{% extends 'login.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="container" style="max-width: 500px;margin-top: 50px;">
+<form method="post" action="{{ path('app_login') }}" class="row g-3">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous n'avez pas l'accès, vous êtes connectés en tant que {{ app.user.userIdentifier }}<br>
+            <a href="{{ path('app_visitor') }}" class="btn btn-success">Accueil</a> <a href="{{ path('app_logout') }}" class="btn btn-light">Déconnexion</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">Connexion</h1>
+    <label for="inputUsername">Pseudo :</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">Mot de passe :</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <label>
+        <input type="checkbox" name="_remember_me" checked>
+        Me souvenir
+    </label>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Se connecter
+    </button>
+</form>
+</div>
+{% endblock %}

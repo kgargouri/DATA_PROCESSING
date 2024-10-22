@@ -1,0 +1,13 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier : {{ client.client }}{% endblock %}
+{% block titre %}Modifier : {{ client.client }}{% endblock %}
+{% block btnAction %}
+<div class="col">{{ include('clients/_delete_form.html.twig') }}</div>
+{% endblock %}
+
+{% block body %}    
+
+    {{ include('clients/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}

@@ -1,0 +1,70 @@
+composer create-project symfony/skeleton:"7.1.*" DATA_CENTER
+composer require webapp
+
+symfony console doctrine:database:create
+`data_processing`
+
+symfony console make:controller
+AdminController
+
+symfony console make:controller
+VisitorController
+
+symfony console make:entity
+Clients
+
+symfony console make:migration
+symfony console d:m:m
+
+symfony composer require orm-fixtures --dev 
+
+symfony console make:fixtures
+ClientsFixtures
+
+symfony console make:crud
+Clients
+
+symfony console doctrine:fixtures:load 
+
+symfony console make:entity
+Produits
+
+symfony console make:migration
+symfony console d:m:m 
+
+symfony console make:fixtures
+ProduitsFixtures
+
+symfony console doctrine:fixtures:load
+
+symfony console make:crud
+Produits
+
+symfony composer require symfony/asset 
+
+symfony console make:user 
+User
+symfony console make:migration
+symfony console d:m:m 
+
+symfony console make:fixtures
+UserFixtures
+symfony console doctrine:fixtures:load
+
+symfony console make:entity
+Ventes
+
+symfony console doctrine:schema:update --force
+
+symfony console make:fixtures
+VentesFixtures
+
+symfony console doctrine:fixtures:load
+
+symfony console make:crud
+Ventes
+
+symfony console make:migration
+symfony console doctrine:schema:update --force
+
+composer require nelmio/cors-bundle

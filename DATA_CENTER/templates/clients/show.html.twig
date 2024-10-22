@@ -1,0 +1,48 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ client.client }}{% endblock %}
+{% block titre %}{{ client.client }}{% endblock %}
+{% block btnAction %}
+<div class="col"><a href="{{ path('app_clients_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a></div>
+<div class="col">{{ include('clients/_delete_form.html.twig') }}</div>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Client</th>
+                <td>{{ client.client }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ client.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Code_postal</th>
+                <td>{{ client.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ client.ville }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ client.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Civilite</th>
+                <td>{{ client.civilite }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ client.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ client.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

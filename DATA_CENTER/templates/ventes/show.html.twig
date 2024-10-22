@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ vente.nCommande }}{% endblock %}
+{% block titre %}{{ vente.nCommande }}{% endblock %}
+{% block btnAction %}
+<div class="col"><a href="{{ path('app_ventes_edit', {'id': vente.id}) }}" class="btn btn-primary">Modifier</a></div>
+<div class="col">{{ include('ventes/_delete_form.html.twig') }}</div>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>N_commande</th>
+                <td>{{ vente.nCommande }}</td>
+            </tr>
+            <tr>
+                <th>Date_commande</th>
+                <td>{{ vente.dateCommande ? vente.dateCommande|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Canal</th>
+                <td>{{ vente.canal }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ vente.quantite }}</td>
+            </tr>
+            <tr>
+                <th>Date_livraison</th>
+                <td>{{ vente.dateLivraison ? vente.dateLivraison|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>    
+{% endblock %}

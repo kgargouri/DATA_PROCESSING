@@ -1,0 +1,41 @@
+{% extends 'admin.html.twig' %}
+{% block title %}Liste des Ventes{% endblock %}
+
+{% block titre %}Liste des Ventes{% endblock %}
+{% block btnAction %}<a href="{{ path('app_ventes_new') }}" class="btn btn-primary">Ajouter</a>{% endblock %}
+
+{% block body %}
+<div class="table-responsive small">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>N_commande</th>
+                <th>Date_commande</th>
+                <th>Canal</th>
+                <th>Quantite</th>
+                <th>Date_livraison</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vente in ventes %}
+            <tr>
+                <td>{{ vente.nCommande }}</td>
+                <td>{{ vente.dateCommande ? vente.dateCommande|date('Y-m-d') : '' }}</td>
+                <td>{{ vente.canal }}</td>
+                <td>{{ vente.quantite }}</td>
+                <td>{{ vente.dateLivraison ? vente.dateLivraison|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_ventes_show', {'id': vente.id}) }}" class="btn btn-secondary">Afficher</a>
+                    <a href="{{ path('app_ventes_edit', {'id': vente.id}) }}" class="btn btn-secondary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

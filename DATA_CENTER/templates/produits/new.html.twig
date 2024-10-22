@@ -1,0 +1,8 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter un produit{% endblock %}
+{% block titre %}Ajouter un produit{% endblock %}
+
+{% block body %}
+    {{ include('produits/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+{% endblock %}
