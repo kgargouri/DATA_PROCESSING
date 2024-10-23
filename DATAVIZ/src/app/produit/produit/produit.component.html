@@ -1,0 +1,16 @@
+<h1>Liste des produits</h1>
+<table *ngIf="produitList" class="table table-striped" style="max-width: 500px;">
+  <thead>
+    <tr>
+      <th scope="col">Produit</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let produit of produitList">
+        <td>{{ produit.nom }}</td>
+        <td><a href="produits/{{ produit.id }}" class="btn btn-secondary">Détails</a></td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="!produitList"><img src="img/animated_loader_gif_n6b5x0.gif"></div>

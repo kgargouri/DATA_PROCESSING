@@ -1,0 +1,28 @@
+<div *ngIf="produit">
+    <a class="btn btn-primary" href="/produits/edit/{{produit.id}}">Modifier</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ produit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ produit.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Sous_categorie</th>
+                <td>{{ produit.sous_categorie }}</td>
+            </tr>
+            <tr>
+                <th>Cout_unitaire</th>
+                <td>{{ produit.cout_unitaire }}</td>
+            </tr>
+            <tr>
+                <th>Prix_unitaire</th>
+                <td>{{ produit.prix_unitaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="!produit"><img src="img/animated_loader_gif_n6b5x0.gif"></div>

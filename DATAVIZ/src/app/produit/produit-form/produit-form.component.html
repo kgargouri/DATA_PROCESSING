@@ -1,0 +1,65 @@
+<form class="row g-3 needs-validation" *ngIf="produit" #produitForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nom du produit :</label>
+        <input type="text" class="form-control" id="nom"
+        required
+        pattern="^[a-zA-Z0-9àéèç ]{1,25}$"
+        [(ngModel)]="produit.nom" name="nom"
+        #nom="ngModel">
+        <div [hidden]="nom.valid || nom.pristine">
+                Le nom du produit est requis (1-25).
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="categorie" class="form-label">Catégorie :</label>
+        <input type="text" class="form-control" id="categorie"
+        required
+        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+        [(ngModel)]="produit.categorie" name="categorie"
+        #categorie="ngModel">
+        <div [hidden]="categorie.valid || categorie.pristine">
+                La Catégorie du produit est requise (1-25).
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="sous_categorie" class="form-label">Sous Catégorie :</label>
+        <input type="text" class="form-control" id="sous_categorie"
+        required
+        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+        [(ngModel)]="produit.sous_categorie" name="sous_categorie"
+        #sous_categorie="ngModel">
+        <div [hidden]="sous_categorie.valid || sous_categorie.pristine">
+                La Sous Catégorie du produit est requise (1-25).
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="cout_unitaire" class="form-label">Coût unitaire :</label>
+        <input type="text" class="form-control" id="cout_unitaire"
+        required
+        pattern="^[0-9,]{1,25}$"
+        [(ngModel)]="produit.cout_unitaire" name="cout_unitaire"
+        #cout_unitaire="ngModel">
+        <div [hidden]="cout_unitaire.valid || cout_unitaire.pristine"
+                class="card-panel red accent-1">
+                Le Coût unitaire du produit est requise (1-25).
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="prix_unitaire" class="form-label">Prix unitaire :</label>
+        <input type="text" class="form-control" id="prix_unitaire"
+        required
+        pattern="^[0-9,]{1,25}$"
+        [(ngModel)]="produit.prix_unitaire" name="prix_unitaire"
+        #prix_unitaire="ngModel">
+        <div [hidden]="prix_unitaire.valid || prix_unitaire.pristine"
+                class="card-panel red accent-1">
+                Le Prix unitaire du produit est requise (1-25).
+        </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit"
+            [disabled]="!produitForm.form.valid">
+            Enregistrer</button>
+    </div>
+  </form>
+  <div *ngIf="!produit"><img src="img/animated_loader_gif_n6b5x0.gif"></div>
