@@ -2,3 +2,6 @@ ng generate module produit/produit
 ng generate service produit/produit
 ng g c produit/produit
 ng g c produit/produit-form
+ng generate guard auth
+ng generate service auth
+ng g c login

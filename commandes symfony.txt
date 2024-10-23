@@ -68,3 +68,8 @@ symfony console make:migration
 symfony console doctrine:schema:update --force
 
 composer require nelmio/cors-bundle
+
+
+composer require symfony/apache-pack
+
+curl -X POST http://127.0.0.1:8000/api/produits -H "Content-Type: application/json" -d '{"nom": "Croissant","categorie":"Boulangerie","sous_categorie":"viennoiserie","cout_unitaire":"0,6","prix_unitaire":"1,5"}'

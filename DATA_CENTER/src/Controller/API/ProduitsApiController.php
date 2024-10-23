@@ -11,13 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-/*use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\SerializerInterface;*/
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+/*use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;*/
+use Symfony\Component\Serializer\SerializerInterface;
 
-#[Route('/api/produits')]
+
 class ProduitsApiController extends AbstractController
 {
-    #[Route('/', methods: ["GET"])]
+    #[Route('/api/produits', name: 'api_produits_list', methods: ["GET"])]
     public function index(ProduitsRepository $repository): Response
     {
         $produits = $repository->findAll();
@@ -26,7 +27,7 @@ class ProduitsApiController extends AbstractController
         ]);
     }
     
-    #[Route('/{id}', methods: ["GET"], requirements: ['id' => Requirement::DIGITS])]
+    #[Route('/api/produits/{id}', name: 'api_produits_show', methods: ["GET"], requirements: ['id' => Requirement::DIGITS])]
     public function show(Produits $produit): Response
     {
         //dump($produit);
@@ -35,7 +36,28 @@ class ProduitsApiController extends AbstractController
         ]);
     }
 
-    #[Route('/', methods: ["POST"])]
+    #[Route('/api/produits/{id}', name: 'api_produits_update', methods: ["PUT"], requirements: ['id' => Requirement::DIGITS])]
+    public function update(
+        Request $request, 
+        Produits $produit,
+        EntityManagerInterface $em
+    )
+    {
+        
+        $produitApi = json_decode($request->getContent(), true);
+        $produit->setNom($produitApi['nom']);
+        $produit->setCategorie($produitApi['categorie']);
+        $produit->setSousCategorie($produitApi['sous_categorie']);
+        $produit->setCoutUnitaire($produitApi['cout_unitaire']);
+        $produit->setPrixUnitaire($produitApi['prix_unitaire']);
+        $em->persist($produit);
+        $em->flush();
+        return $this->json($produit, 200, [], [
+            'groups' => ['produit.create']
+        ]);
+    }
+
+    #[Route('/api/produits', name: 'api_produits_create', methods: ["POST"])]
     public function create(
         Request $request, 
         #[MapRequestPayload(
@@ -47,29 +69,9 @@ class ProduitsApiController extends AbstractController
     {
         $em->persist($produit);
         $em->flush();
-        return $this->json($produit, 200, [], [
-            'groups' => ['produit.index', 'produit.show']
-        ]);
-    }
-
-    #[Route('/{id}', methods: ["PUT"], requirements: ['id' => Requirement::DIGITS])]
-    public function update(
-        Request $request, 
-        #[MapRequestPayload(
-            serializationContext: ['produit.create']
-        )]
-        Produits $produit,
-        EntityManagerInterface $em
-    )
-    {
-        $data = json_decode($request->getContent(), true);
-        dump($request);
-        dump($produit);die;
-        $produit->setNom($data['nom']);
-        $em->persist($produit);
-        $em->flush();
-        return $this->json($produit, 200, [], [
-            'groups' => ['produit.index', 'produit.show']
+        $produit->getId();
+        return $this->json($produit->getId(), 200, [], [
+            'groups' => ['produit.create']
         ]);
     }
 }
