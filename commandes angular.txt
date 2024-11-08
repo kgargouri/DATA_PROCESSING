@@ -1,7 +1,12 @@
-ng generate module produit/produit
+ng generate module produit
 ng generate service produit/produit
 ng g c produit/produit
 ng g c produit/produit-form
 ng generate guard auth
 ng generate service auth
 ng g c login
+
+
+ng generate module client : il va créer un dossier client, puis un fichier client.module.ts
+ng generate service client/client
+ng g c client/clientListe : il va créer un dossier clientListe qui contient les composants de clientListe
